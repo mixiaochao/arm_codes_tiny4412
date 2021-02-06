@@ -1,0 +1,17 @@
+50000020 t __end_bss
+5000001c t __start_bss
+50000444 A _bss_end
+50000444 A _bss_start
+50000444 A _misec_end
+50000444 A _misec_start
+50000000 T _start
+50000024 t clr_bss
+500000c0 T delay
+500003a8 T enable_mmu
+50000040 t end
+50000344 T init_global_map
+50000030 t loop
+500001b8 T main
+50000044 T memset
+500002c8 T section_map
+50000130 T strcmp

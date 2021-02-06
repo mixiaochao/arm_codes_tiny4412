@@ -1,0 +1,14 @@
+400102c0 A __bss_end__
+400102c0 A __bss_start
+400102c0 A __bss_start__
+400102c0 A __end__
+400082c0 A __exidx_end
+400082c0 A __exidx_start
+400102c0 A _bss_end__
+400102c0 A _edata
+400102c0 A _end
+40008000 T _start
+4000812c T app_entry
+400080d0 T init_ttb
+40008018 t mmu_enable
+40008054 t vector_map

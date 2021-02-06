@@ -1,0 +1,3888 @@
+cscope 15 $HOME/arm_code_v1/ts -q 0000000331 0000020680
+	@adc.c
+
+1 
+	~<adc.h
+>
+
+3 
+	$do_adc
+()
+
+5 
+	`¥ötf
+("ad¯--> %d\n", 
+	`adc_ªad
+());
+
+6 
+CLRINTADC
+ = 0;
+
+7 
+	}
+}
+
+9 
+	$adc_öô
+()
+
+12 
+ADCCON
+ = (1 << 16) | (1 << 14) | (99 << 6);
+
+14 
+ADCDLY
+ = 0xffff;
+
+15 
+ADCMUX
+ = 0;
+
+18 
+IESR2
+ |= 1 << 19;
+
+19 
+	}
+}
+
+21 
+u16
+ 
+	$adc_ªad
+()
+
+23  
+ADCDAT
+&0xfff;
+
+24 
+	}
+}
+
+	@i2c.c
+
+1 
+	~<iic.h
+>
+
+2 
+	~<úq.h
+>
+
+3 
+	~<lib.h
+>
+
+6 
+	$iic1_öô
+(
+addr
+)
+
+10 
+	`iic1_gpio_öô
+();
+
+16 
+I2CCON
+ = (1<<7)|(1<<6)|(1<<5);
+
+19 
+I2CSTAT
+ = 1 << 4;
+
+26 
+	}
+}
+
+30 
+	$iic1_gpio_öô
+()
+
+32 
+GPD1CON
+ &= ~(0xff << 8);
+
+33 
+GPD1CON
+ |= 0x22 << 8;
+
+34 
+	}
+}
+
+36 
+	$ªsume_iic_s˛
+()
+
+38 
+I2CCON
+ &= ~(1<<4);
+
+39 
+	}
+}
+
+44 
+	$waô_u¡û_iic_úq
+()
+
+46 
+i
+;
+
+48 
+	#MAX_WAIT
+ 0x3fff
+
+	)
+
+50 
+i
+ = 0; i < 
+MAX_WAIT
+; i++)
+
+52 i‡(
+I2CCON
+ & (1<<4))
+
+56 
+	}
+}
+
+58 
+	$mxcdñay
+(
+vÆ
+)
+
+60 
+vÆ
+ *= 66;
+
+62 
+vÆ
+--)
+
+64 
+	}
+}
+
+67 
+	$ªad_d©a
+(*
+d©a
+, 
+Àn
+)
+
+69 
+i
+, 
+ªt
+ = -1;
+
+71 
+I2CDS
+ = (
+DEV_ADDR
+<<1)|1;
+
+72 
+I2CSTAT
+ = 0xb0;
+
+74 i‡(
+	`waô_u¡û_iic_úq
+() < 0)
+
+75 
+END
+;
+
+77 i‡(
+I2CSTAT
+ & 1)
+
+79 
+ªt
+ = -2;
+
+80 
+END
+;
+
+83 
+i
+ = 0; i < 
+Àn
+; i++)
+
+85 
+	`ªsume_iic_s˛
+();
+
+86 i‡(
+	`waô_u¡û_iic_úq
+() < 0)
+
+87 
+END
+;
+
+89 
+d©a
+[
+i
+] = 
+I2CDS
+;
+
+91 
+ªt
+ = 
+i
+;
+
+93 
+END
+:
+
+94 
+I2CSTAT
+ = 0x90;
+
+95 
+	`ªsume_iic_s˛
+();
+
+96 
+	`mxcdñay
+(1000);
+
+98  
+ªt
+;
+
+99 
+	}
+}
+
+	@include/adc.h
+
+1 #i‚de‡
+XCM_ADC_H_
+
+
+2 
+	#XCM_ADC_H_
+
+
+	)
+
+4 
+	~<lib.h
+>
+
+6 
+	#ADCCON
+ *((vﬁ©ûê
+u32
+ *)0x126c0000)
+
+	)
+
+7 
+	#ADCDLY
+ *((vﬁ©ûê
+u32
+ *)0x126c0008)
+
+	)
+
+8 
+	#ADCDAT
+ *((vﬁ©ûê
+u32
+ *)0x126c000C)
+
+	)
+
+9 
+	#CLRINTADC
+ *((vﬁ©ûê
+u32
+ *)0x126c0018)
+
+	)
+
+10 
+	#ADCMUX
+ *((vﬁ©ûê
+u32
+ *)0x126c001C)
+
+	)
+
+11 
+	#IESR2
+ *((vﬁ©ûê
+u32
+ *)0x10440020)
+
+	)
+
+13 
+adc_öô
+();
+
+14 
+u16
+ 
+adc_ªad
+();
+
+15 
+do_adc
+();
+
+17 
+	#ADCINT
+ 42
+
+	)
+
+18 
+	#waô_c⁄vît_íd
+ !(
+ADCCON
+&(1 << 15)))
+
+	)
+
+19 
+	#°¨t_c⁄vît
+ (
+ADCCON
+ |1)
+
+	)
+
+	@include/i2c.h
+
+1 #i‚de‡
+MXC_I2C_H_
+
+
+2 
+	#MXC_I2C_H_
+
+
+	)
+
+4 
+	~<lib.h
+>
+
+6 
+	#GPD1CON
+ *((vﬁ©ûê
+u32
+ *)0x114000c0)
+
+	)
+
+8 
+	#I2CCONn
+ *((vﬁ©ûê
+u32
+ *)0x13870000)
+
+	)
+
+9 
+	#I2CSTATn
+ *((vﬁ©ûê
+u32
+ *)0x13870004)
+
+	)
+
+10 
+	#I2CADDn
+ *((vﬁ©ûê
+u32
+ *)0x13870008)
+
+	)
+
+11 
+	#I2CDSn
+ *((vﬁ©ûê
+u32
+ *)0x1387000C)
+
+	)
+
+12 
+	#I2CLCn
+ *((vﬁ©ûê
+u32
+ *)0x13870010)
+
+	)
+
+14 
+i2c_≥ndög_ã°
+();
+
+	@include/iic.h
+
+1 #i‚de‡
+MILLET__IIC_H
+
+
+2 
+	#MILLET__IIC_H
+
+
+	)
+
+4 
+	~<lib.h
+>
+
+6 
+	#DEV_ADDR
+ 0x38
+
+	)
+
+8 
+	#GPD1CON
+ (*(vﬁ©ûê
+u32
+ *)(0x11400000 + 0x00C0))
+
+	)
+
+10 
+	#IIC1_BASE
+ 0x13870000
+
+	)
+
+11 
+	#I2CCON
+ (*(vﬁ©ûê
+u32
+ *)(
+IIC1_BASE
+ + 0x0000))
+
+	)
+
+12 
+	#I2CSTAT
+ (*(vﬁ©ûê
+u32
+ *)(
+IIC1_BASE
+ + 0x0004))
+
+	)
+
+13 
+	#I2CADD
+ (*(vﬁ©ûê
+u32
+ *)(
+IIC1_BASE
+ + 0x0008))
+
+	)
+
+14 
+	#I2CDS
+ (*(vﬁ©ûê
+u32
+ *)(
+IIC1_BASE
+ + 0x000C))
+
+	)
+
+15 
+	#I2CLC
+ (*(vﬁ©ûê
+u32
+ *)(
+IIC1_BASE
+ + 0x0010))
+
+	)
+
+17 
+iic1_gpio_öô
+();
+
+18 
+iic1_öô
+(
+addr
+);
+
+19 
+ªsume_iic_s˛
+();
+
+20 
+waô_u¡û_iic_úq
+();
+
+21 
+ªad_d©a
+(*
+d©a
+, 
+Àn
+);
+
+	@include/irq.h
+
+1 #i‚de‡
+XCM_IRQ_H_
+
+
+2 
+	#XCM_IRQ_H_
+
+
+	)
+
+4 
+	~<lib.h
+>
+
+6 (*
+	th™dÀr_t
+)();
+
+7 
+	`úq_ªque°_˝u0
+(
+u32
+ 
+úqnum
+, (*
+h™dÀr
+)(), u32 
+Àvñ
+);
+
+9 
+	#ICCICR_CPU0
+ *((vﬁ©ûê
+u32
+ *)0x10480000)
+
+	)
+
+10 
+	#ICCPMR_CPU0
+ *((vﬁ©ûê
+u32
+ *)0x10480004)
+
+	)
+
+11 
+	#ICDDCR
+ *((vﬁ©ûê
+u32
+ *)0x10490000)
+
+	)
+
+13 
+	#ICCIAR_CPU0
+ *((vﬁ©ûê
+u32
+ *)0x1048000c)
+
+	)
+
+14 
+	#ICCEOIR_CPU0
+ *((vﬁ©ûê
+u32
+ *)0x10480010)
+
+	)
+
+16 
+	#ICDIPR_CPU0
+ ((vﬁ©ûê
+u32
+ *)0x10490400)
+
+	)
+
+17 
+	#ICDIPTR_CPU0
+ ((vﬁ©ûê
+u32
+ *)0x10490800)
+
+	)
+
+18 
+	#ICDISER_CPU0
+ ((vﬁ©ûê
+u32
+ *)0x10490100)
+
+	)
+
+	@include/isr.h
+
+1 #i‚de‡
+MILLET_ISR_H_
+
+
+2 
+	#MILLET_ISR_H_
+
+
+	)
+
+4 
+do_ç
+();
+
+	@include/key.h
+
+1 #i‚de‡
+XCM_KEY_H_
+
+
+2 
+	#XCM_KEY_H_
+
+
+	)
+
+4 
+	~<lib.h
+>
+
+6 
+	#GPX3BASE
+ 0x11000000
+
+	)
+
+7 
+	#GPX3CON
+ *((vﬁ©ûê
+u32
+ *)(
+GPX3BASE
+ + 0xc60))
+
+	)
+
+8 
+	#GPX3DAT
+ *((vﬁ©ûê
+u32
+ *)(
+GPX3BASE
+ + 0xc64))
+
+	)
+
+10 
+key_öô
+();
+
+11 
+u32
+ 
+sˇnf_keys
+();
+
+	@include/keyeint.h
+
+1 #i‚de‡
+XCM_KEY_EINT_H_
+
+
+2 
+	#XCM_KEY_EINT_H_
+
+
+	)
+
+4 
+	~<lib.h
+>
+
+6 
+key_eöt_öô
+();
+
+7 
+do_keys
+();
+
+9 
+	#KEY4INT
+ 64
+
+	)
+
+11 
+	#GPX3CON
+ *((vﬁ©ûê
+u32
+ *)0x11000c60)
+
+	)
+
+12 
+	#EXT_INT43CON
+ *((vﬁ©ûê
+u32
+ *)0x11000e0c)
+
+	)
+
+13 
+	#EXT_INT43_FLTCON0
+ *((vﬁ©ûê
+u32
+ *)0x11000e98)
+
+	)
+
+14 
+	#EXT_INT43_FLTCON1
+ *((vﬁ©ûê
+u32
+ *)0x11000e9c)
+
+	)
+
+15 
+	#EXT_INT43_MASK
+ *((vﬁ©ûê
+u32
+ *)0x11000f0c)
+
+	)
+
+16 
+	#EXT_INT43_PEND
+ *((vﬁ©ûê
+u32
+ *)0x11000f4c)
+
+	)
+
+	@include/led.h
+
+1 #i‚de‡
+XCM_LED_H_
+
+
+2 
+	#XCM_LED_H_
+
+
+	)
+
+4 
+	~<lib.h
+>
+
+6 
+	#GPM4BASE
+ 0x11000000
+
+	)
+
+7 
+	#GPM4CON
+ *((vﬁ©ûê
+u32
+ *)(
+GPM4BASE
++0x2e0))
+
+	)
+
+8 
+	#GPM4DAT
+ *((vﬁ©ûê
+u32
+ *)(
+GPM4BASE
++0x2e4))
+
+	)
+
+10 
+Àd_öô
+();
+
+11 
+Àd_⁄
+(
+u32
+ 
+num
+);
+
+12 
+Àd_off
+(
+u32
+ 
+num
+);
+
+	@include/lib.h
+
+1 #i‚de‡
+XCM_LIB_H_
+
+
+2 
+	#XCM_LIB_H_
+
+
+	)
+
+4 
+	#¥ötf
+(...Ë((((*)(c⁄° *, ...))0x43e11a2c)(
+__VA_ARGS__
+))
+
+	)
+
+8 
+	tu32
+;
+
+9 
+	tu16
+;
+
+10 
+	tu8
+;
+
+12 
+dñay
+(
+u32
+ 
+n
+);
+
+13 
+°rcmp
+(c⁄° *
+s1
+, c⁄° *
+s2
+);
+
+14 *
+mem£t
+(*
+s
+, 
+c
+, 
+u32
+ 
+n
+);
+
+15 *
+mem˝y
+(*
+de°
+, c⁄° *
+§c
+, 
+u32
+ 
+n
+);
+
+17 
+	#NULL
+ (*)0
+
+	)
+
+	@include/mmu.h
+
+1 #i‚de‡
+XCM_MMU_H_
+
+
+2 
+	#XCM_MMU_H_
+
+
+	)
+
+4 
+	~<lib.h
+>
+
+11 
+	#CREATE_DESCRIPTOR
+(
+TTB
+, 
+VA
+, 
+PA
+)\
+
+12 
+TTB
+[
+VA
+>>20] = ((
+PA
+&0xfff00000Ë| 0x2)
+
+	)
+
+20 
+£˘i⁄_m≠
+(
+u32
+ *
+âb
+, u32 
+va_°¨t
+, u32 
+va_íd
+, u32 
+∑
+);
+
+21 
+öô_globÆ_m≠
+(
+u32
+ *
+âb
+);
+
+22 
+íabÀ_mmu
+(
+u32
+ *
+âb
+);
+
+23 
+ªbuûd_ve˘‹s_èbÀ
+();
+
+25 
+	#TTB
+ ((
+u32
+ *)0x76000000)
+
+	)
+
+27 
+u32
+ 
+ex˚p_°¨t
+, 
+ex˚p_íd
+;
+
+	@include/rtc.h
+
+1 #i‚de‡
+XCM_RTC_H_
+
+
+2 
+	#XCM_RTC_H_
+
+
+	)
+
+4 
+	~<lib.h
+>
+
+6 
+	#INTP
+ *((vﬁ©ûê
+u32
+ *)0x10070030)
+
+	)
+
+7 
+	#RTCCON
+ *((vﬁ©ûê
+u32
+ *)0x10070040)
+
+	)
+
+8 
+	#TICCNT
+ *((vﬁ©ûê
+u32
+ *)0x10070044)
+
+	)
+
+9 
+	#RTCALM
+ *((vﬁ©ûê
+u32
+ *)0x10070050)
+
+	)
+
+10 
+	#ALMSEC
+ *((vﬁ©ûê
+u32
+ *)0x10070054)
+
+	)
+
+11 
+	#ALMMIN
+ *((vﬁ©ûê
+u32
+ *)0x10070058)
+
+	)
+
+12 
+	#ALMHOUR
+ *((vﬁ©ûê
+u32
+ *)0x1007005C)
+
+	)
+
+13 
+	#ALMDAY
+ *((vﬁ©ûê
+u32
+ *)0x10070060)
+
+	)
+
+14 
+	#ALMMON
+ *((vﬁ©ûê
+u32
+ *)0x10070064)
+
+	)
+
+15 
+	#ALMYEAR
+ *((vﬁ©ûê
+u32
+ *)0x10070068)
+
+	)
+
+16 
+	#BCDSEC
+ *((vﬁ©ûê
+u32
+ *)0x10070070)
+
+	)
+
+17 
+	#BCDMIN
+ *((vﬁ©ûê
+u32
+ *)0x10070074)
+
+	)
+
+18 
+	#BCDHOUR
+ *((vﬁ©ûê
+u32
+ *)0x10070078)
+
+	)
+
+19 
+	#BCDDAYWEEK
+ *((vﬁ©ûê
+u32
+ *)0x10070080)
+
+	)
+
+20 
+	#BCDDAY
+ *((vﬁ©ûê
+u32
+ *)0x1007007c)
+
+	)
+
+21 
+	#BCDMON
+ *((vﬁ©ûê
+u32
+ *)0x10070084)
+
+	)
+
+22 
+	#BCDYEAR
+ *((vﬁ©ûê
+u32
+ *)0x10070088)
+
+	)
+
+23 
+	#CURTICCNT
+ *((vﬁ©ûê
+u32
+ *)0x10070090)
+
+	)
+
+26 
+u32
+ 
+	m£c
+;
+
+27 
+u32
+ 
+	mmö
+;
+
+28 
+u32
+ 
+	mhour
+;
+
+29 
+u32
+ 
+	mmday
+;
+
+30 
+u32
+ 
+	mm⁄
+;
+
+31 
+u32
+ 
+	myór
+;
+
+32 
+u32
+ 
+	mwday
+;
+
+33 }
+	tπ˘ime_t
+;
+
+35 
+u16
+ 
+bö2bcd
+(u16 
+n
+);
+
+36 
+u16
+ 
+bcd2bö
+(u16 
+n
+);
+
+38 
+πc_gëtime
+(
+π˘ime_t
+ *
+t
+);
+
+39 
+πc_£âime
+(
+π˘ime_t
+ *
+t
+);
+
+40 
+πc_£t_Æ¨m
+(
+π˘ime_t
+ *
+t
+);
+
+41 
+πc_tic_úq_öô
+();
+
+43 
+do_tiˇœrm
+();
+
+45 
+	#RTCTIC_IRQID
+ 77
+
+	)
+
+46 
+	#RTCALM_IRQID
+ 76
+
+	)
+
+	@include/stdarg.h
+
+28 #i‚de‡
+_STDARG_H
+
+
+29 #i‚de‡
+_ANSI_STDARG_H_
+
+
+30 #i‚de‡
+__√ed___va_li°
+
+
+31 
+	#_STDARG_H
+
+
+	)
+
+32 
+	#_ANSI_STDARG_H_
+
+
+	)
+
+34 #unde‡
+__√ed___va_li°
+
+
+38 #i‚de‡
+__GNUC_VA_LIST
+
+
+39 
+	#__GNUC_VA_LIST
+
+
+	)
+
+40 
+__buûtö_va_li°
+ 
+	t__gnuc_va_li°
+;
+
+45 #ifde‡
+_STDARG_H
+
+
+47 
+	#va_°¨t
+(
+v
+,
+l
+Ë
+	`__buûtö_va_°¨t
+(v,l)
+
+	)
+
+48 
+	#va_íd
+(
+v
+Ë
+	`__buûtö_va_íd
+(v)
+
+	)
+
+49 
+	#va_¨g
+(
+v
+,
+l
+Ë
+	`__buûtö_va_¨g
+(v,l)
+
+	)
+
+50 #i‡!
+deföed
+(
+__STRICT_ANSI__
+Ë|| 
+__STDC_VERSION__
+ + 0 >199900L || deföed(
+__GXX_EXPERIMENTAL_CXX0X__
+)
+
+51 
+	#va_c›y
+(
+d
+,
+s
+Ë
+	`__buûtö_va_c›y
+(d,s)
+
+	)
+
+53 
+	#__va_c›y
+(
+d
+,
+s
+Ë
+	`__buûtö_va_c›y
+(d,s)
+
+	)
+
+62 #ifde‡
+_HIDDEN_VA_LIST
+
+
+63 #unde‡
+_VA_LIST
+
+
+66 #ifde‡
+_BSD_VA_LIST
+
+
+67 #unde‡
+_BSD_VA_LIST
+
+
+70 #i‡
+deföed
+(
+__svr4__
+Ë|| (deföed(
+_SCO_DS
+Ë&& !deföed(
+__VA_LIST
+))
+
+75 #i‚de‡
+_VA_LIST_
+
+
+76 
+	#_VA_LIST_
+
+
+	)
+
+77 #ifde‡
+__i860__
+
+
+78 #i‚de‡
+_VA_LIST
+
+
+79 
+	#_VA_LIST
+ 
+va_li°
+
+
+	)
+
+82 
+__gnuc_va_li°
+ 
+	tva_li°
+;
+
+83 #ifde‡
+_SCO_DS
+
+
+84 
+	#__VA_LIST
+
+
+	)
+
+93 #i‡!
+deföed
+ (
+_VA_LIST_
+Ë|| deföed (
+__BSD_NET2__
+Ë|| deföed (
+____386BSD____
+Ë|| deföed (
+__bsdi__
+Ë|| deföed (
+__£quít__
+Ë|| deföed (
+__FªeBSD__
+Ë|| deföed(
+WINNT
+)
+
+95 #i‚de‡
+_VA_LIST_DEFINED
+
+
+97 #i‚de‡
+_VA_LIST
+
+
+99 #i‚de‡
+_VA_LIST_T_H
+
+
+101 #i‚de‡
+__va_li°__
+
+
+102 
+__gnuc_va_li°
+ 
+	tva_li°
+;
+
+107 #i‡!(
+deföed
+ (
+__BSD_NET2__
+Ë|| deföed (
+____386BSD____
+Ë|| deföed (
+__bsdi__
+Ë|| deföed (
+__£quít__
+Ë|| deföed (
+__FªeBSD__
+))
+
+108 
+	#_VA_LIST_
+
+
+	)
+
+110 #i‚de‡
+_VA_LIST
+
+
+111 
+	#_VA_LIST
+
+
+	)
+
+113 #i‚de‡
+_VA_LIST_DEFINED
+
+
+114 
+	#_VA_LIST_DEFINED
+
+
+	)
+
+116 #i‚de‡
+_VA_LIST_T_H
+
+
+117 
+	#_VA_LIST_T_H
+
+
+	)
+
+119 #i‚de‡
+__va_li°__
+
+
+120 
+	#__va_li°__
+
+
+	)
+
+	@include/timer.h
+
+1 #i‚de‡
+XCM_TIIMER_H_
+
+
+2 
+	#XCM_TIIMER_H_
+
+
+	)
+
+4 
+	~<lib.h
+>
+
+6 
+	#TCFG0
+ *((vﬁ©ûê
+u32
+ *)0x139d0000)
+
+	)
+
+7 
+	#TCFG1
+ *((vﬁ©ûê
+u32
+ *)0x139d0004)
+
+	)
+
+8 
+	#TCON
+ *((vﬁ©ûê
+u32
+ *)0x139d0008)
+
+	)
+
+9 
+	#TCNTB0
+ *((vﬁ©ûê
+u32
+ *)0x139d000C)
+
+	)
+
+10 
+	#TCMPB0
+ *((vﬁ©ûê
+u32
+ *)0x139d0010)
+
+	)
+
+11 
+	#TCNTO0
+ *((vﬁ©ûê
+u32
+ *)0x139d0014)
+
+	)
+
+12 
+	#TCNTB1
+ *((vﬁ©ûê
+u32
+ *)0x139d0018)
+
+	)
+
+13 
+	#TCMPB1
+ *((vﬁ©ûê
+u32
+ *)0x139d001C)
+
+	)
+
+14 
+	#TCNTO1
+ *((vﬁ©ûê
+u32
+ *)0x139d0020)
+
+	)
+
+15 
+	#TCNTB2
+ *((vﬁ©ûê
+u32
+ *)0x139d0024)
+
+	)
+
+16 
+	#TCMPB2
+ *((vﬁ©ûê
+u32
+ *)0x139d0028)
+
+	)
+
+17 
+	#TCNTO2
+ *((vﬁ©ûê
+u32
+ *)0x139d002C)
+
+	)
+
+18 
+	#TCNTB3
+ *((vﬁ©ûê
+u32
+ *)0x139d0030)
+
+	)
+
+19 
+	#TCMPB3
+ *((vﬁ©ûê
+u32
+ *)0x139d0034)
+
+	)
+
+20 
+	#TCNTO3
+ *((vﬁ©ûê
+u32
+ *)0x139d0038)
+
+	)
+
+21 
+	#TCNTB4
+ *((vﬁ©ûê
+u32
+ *)0x139d003C)
+
+	)
+
+22 
+	#TCNTO4
+ *((vﬁ©ûê
+u32
+ *)0x139d0040)
+
+	)
+
+23 
+	#TINT_CSTAT
+ *((vﬁ©ûê
+u32
+ *)0x139d0044)
+
+	)
+
+25 
+	#GPD0CON
+ *((vﬁ©ûê
+u32
+ *)0x114000a0)
+
+	)
+
+26 
+	#GPD0DAT
+ *((vﬁ©ûê
+u32
+ *)0x114000a4)
+
+	)
+
+28 
+do_timî4
+();
+
+29 
+timî4_öô
+(
+u32
+ 
+ms
+);
+
+30 
+timî0_öô
+(
+u32
+ 
+≥riodus
+, u32 
+dutyus
+);
+
+32 
+bìp_£t_hz
+(
+u32
+ 
+‰eq
+);
+
+33 
+°¨t_pwm0_out
+();
+
+34 
+°›_pwm0_out
+();
+
+	@include/tp.h
+
+1 #i‚de‡
+MILLET_TP_H_
+
+
+2 
+	#MILLET_TP_H_
+
+
+	)
+
+4 
+	#GPX1CON
+ (*(
+u32
+ *)(0x11000000 + 0x0C20))
+
+	)
+
+5 
+	#EXT_INT41CON
+ (*(
+u32
+ *)(0x11000000 + 0x0E04))
+
+	)
+
+6 
+	#EXT_INT41_MASK
+ (*(
+u32
+ *)(0x11000000 + 0x0F04))
+
+	)
+
+7 
+	#EXT_INT41_PEND
+ (*(
+u32
+ *)(0x11000000 + 0x0F44))
+
+	)
+
+8 
+	#EXT_INT41_FLTCON1
+ (*(
+u32
+ *)(0x11000000 + 0x0E8C))
+
+	)
+
+10 
+ç_öt_öô
+();
+
+12 
+	#TP_IRQ
+ 62
+
+	)
+
+13 
+	#LEV
+ 0
+
+	)
+
+	@include/uart.h
+
+1 #i‚de‡
+XCM_UART_H_
+
+
+2 
+	#XCM_UART_H_
+
+
+	)
+
+4 
+	~<lib.h
+>
+
+6 
+	#GPA0CON
+ *((vﬁ©ûê
+u32
+ *)0x11400000)
+
+	)
+
+8 
+	#UART0BASE
+ 0x13800000
+
+	)
+
+10 
+	#ULCONn
+ *((vﬁ©ûê
+u32
+ *)(
+UART0BASE
+ + 0x0000))
+
+	)
+
+11 
+	#UCONn
+ *((vﬁ©ûê
+u32
+ *)(
+UART0BASE
+ + 0x0004))
+
+	)
+
+12 
+	#UFCONn
+ *((vﬁ©ûê
+u32
+ *)(
+UART0BASE
+ + 0x0008))
+
+	)
+
+13 
+	#UMCONn
+ *((vﬁ©ûê
+u32
+ *)(
+UART0BASE
+ + 0x000C))
+
+	)
+
+14 
+	#UTRSTATn
+ *((vﬁ©ûê
+u32
+ *)(
+UART0BASE
+ + 0x0010))
+
+	)
+
+15 
+	#UERSTATn
+ *((vﬁ©ûê
+u32
+ *)(
+UART0BASE
+ + 0x0014))
+
+	)
+
+16 
+	#UFSTATn
+ *((vﬁ©ûê
+u32
+ *)(
+UART0BASE
+ + 0x0018))
+
+	)
+
+17 
+	#UMSTATn
+ *((vﬁ©ûê
+u32
+ *)(
+UART0BASE
+ + 0x001C))
+
+	)
+
+18 
+	#UTXHn
+ *((vﬁ©ûê
+u32
+ *)(
+UART0BASE
+ + 0x0020))
+
+	)
+
+19 
+	#URXHn
+ *((vﬁ©ûê
+u32
+ *)(
+UART0BASE
+ + 0x0024))
+
+	)
+
+20 
+	#UBRDIVn
+ *((vﬁ©ûê
+u32
+ *)(
+UART0BASE
+ + 0x0028))
+
+	)
+
+21 
+	#UFRACVALn
+ *((vﬁ©ûê
+u32
+ *)(
+UART0BASE
+ + 0x002C))
+
+	)
+
+22 
+	#UINTPn
+ *((vﬁ©ûê
+u32
+ *)(
+UART0BASE
+ + 0x0030))
+
+	)
+
+23 
+	#UINTSPn
+ *((vﬁ©ûê
+u32
+ *)(
+UART0BASE
+ + 0x0034))
+
+	)
+
+24 
+	#UINTMn
+ *((vﬁ©ûê
+u32
+ *)(
+UART0BASE
+ + 0x0038))
+
+	)
+
+26 
+u¨t0_öô
+();
+
+27 
+uputch¨
+(
+ch
+);
+
+28 
+ugëch¨
+();
+
+29 *
+ugës
+(*
+buf
+);
+
+30 
+uputs
+(c⁄° *
+buf
+);
+
+31 
+uputs_
+(c⁄° *
+buf
+);
+
+32 
+u¥ötf
+(c⁄° *
+fmt
+, ...);
+
+	@include/wdt.h
+
+1 #i‚de‡
+XCM_WDT_H_
+
+
+2 
+	#XCM_WDT_H_
+
+
+	)
+
+4 
+	~<lib.h
+>
+
+6 
+do_wdt_timî
+();
+
+7 
+wdt_timî_öô
+(
+u32
+ 
+ms
+);
+
+8 
+wdt_ª£t_öô
+(
+u32
+ 
+ms
+);
+
+10 
+	#WTCON
+ *((vﬁ©ûê
+u32
+ *)0x10060000)
+
+	)
+
+11 
+	#WTDAT
+ *((vﬁ©ûê
+u32
+ *)0x10060004)
+
+	)
+
+12 
+	#WTCNT
+ *((vﬁ©ûê
+u32
+ *)0x10060008)
+
+	)
+
+13 
+	#WTCLRINT
+ *((vﬁ©ûê
+u32
+ *)0x1006000C)
+
+	)
+
+15 
+	#WDTID
+ 75
+
+	)
+
+	@irq.c
+
+1 
+	~<úq.h
+>
+
+5 
+h™dÀr_t
+ 
+	gi§
+[160];
+
+9 
+	$do_úq
+()
+
+11 
+h™dÀr_t
+ 
+h™dÀr
+ = 
+NULL
+;
+
+14 
+u32
+ 
+úqnum
+ = 
+ICCIAR_CPU0
+&0x3ff;
+
+17 
+h™dÀr
+ = 
+i§
+[
+úqnum
+];
+
+20 
+	`h™dÀr
+();
+
+22 
+h™dÀr
+ = 
+NULL
+;
+
+25 
+ICCEOIR_CPU0
+ = 
+úqnum
+;
+
+26 
+	}
+}
+
+31 
+	$úq_ªque°_˝u0
+(
+u32
+ 
+úqnum
+, (*
+h™dÀr
+)(), u32 
+Àvñ
+)
+
+34 
+ICCICR_CPU0
+ = 0x1;
+
+36 
+ICCPMR_CPU0
+ = 0xff;
+
+38 
+ICDDCR
+ = 0x1;
+
+40 i‡((
+úqnum
+ >= 0) && (irqnum < 160)) {
+
+43 
+ICDIPR_CPU0
+[
+úqnum
+/4] &= ~(0xff << (irqnum%4)*8);
+
+44 
+ICDIPR_CPU0
+[
+úqnum
+/4] |
+Àvñ
+ << ((irqnum%4)*8);
+
+47 
+ICDIPTR_CPU0
+[
+úqnum
+/4] &= ~(0xff << (irqnum%4)*8);
+
+48 
+ICDIPTR_CPU0
+[
+úqnum
+/4] |= 0x1 << ((irqnum%4)*8);
+
+51 
+ICDISER_CPU0
+[
+úqnum
+/32] |= 0x1 << (irqnum%32);
+
+57 
+i§
+[
+úqnum
+] = 
+h™dÀr
+;
+
+60 
+__asm__
+ 
+	`__vﬁ©ûe__
+ (
+
+65 
+	}
+}
+
+	@isr.c
+
+1 
+	~<iic.h
+>
+
+2 
+	~<ç.h
+>
+
+4 
+	$do_ç
+()
+
+6 
+i
+;
+
+7 
+d©a
+[32];
+
+9 
+EXT_INT41_PEND
+ = EXT_INT41_PEND;
+
+11 i‡(
+	`ªad_d©a
+(
+d©a
+, (data)) == -2)
+
+13 i‡(
+	`ªad_d©a
+(
+d©a
+, (data)) == -2)
+
+15 
+	`¥ötf
+("noáck\n");
+
+20 i‡(
+d©a
+[2] <= 0)
+
+23 
+	`¥ötf
+("poöts=%d: ", 
+d©a
+[2]);
+
+24 
+i
+ = 0; i < 
+d©a
+[2]; i++)
+
+26 
+	`¥ötf
+("(x%d=%d,y%d=%d); ", 
+i
+, ((
+d©a
+[i*6+3]&0xf)<<8)|\
+
+27 
+d©a
+[
+i
+*6+4], i, ((data[i*6+5]&0xf)<<8)|data[i*6+6]);
+
+30 
+	`¥ötf
+("\n\n%d\n", (
+d©a
+[3]>>6)&0x3);
+
+32 
+	`¥ötf
+("\n\n");
+
+33 
+	}
+}
+
+	@key_eint.c
+
+1 
+	~<keyeöt.h
+>
+
+3 
+	$do_keys
+()
+
+5 (
+EXT_INT43_PEND
+>>2)&0xf) {
+
+7 
+	`¥ötf
+("key 1 dnup...\n");
+
+10 
+	`¥ötf
+("key 2 dnup...\n");
+
+13 
+	`¥ötf
+("key 3 dnup...\n");
+
+16 
+	`¥ötf
+("key 4 dnup...\n");
+
+20 
+EXT_INT43_PEND
+ = EXT_INT43_PEND;
+
+21 
+	}
+}
+
+23 
+	$key_eöt_öô
+()
+
+26 
+GPX3CON
+ |= 0xffff << 8;
+
+29 
+EXT_INT43CON
+ &= ~(0xffff << 8);
+
+30 
+EXT_INT43CON
+ |= (0x3333 << 8);
+
+33 
+EXT_INT43_FLTCON0
+ |= 0xffff << 16;
+
+34 
+EXT_INT43_FLTCON1
+ |= 0xffff;
+
+37 
+EXT_INT43_MASK
+ &= ~(0xf << 2);
+
+38 
+	}
+}
+
+	@lcd.c
+
+1 
+	~<lcd.h
+>
+
+3 
+gpio_öô
+();
+
+4 
+lcd_˛k§c_£t
+();
+
+5 
+wö0_öô
+();
+
+7 
+	#BPP888
+ 
+SUIYI
+
+
+	)
+
+10 
+	$lcd_öô
+()
+
+13 
+	`gpio_öô
+();
+
+17 
+	`lcd_˛k§c_£t
+();
+
+20 
+LCDBLK_CFG
+ |= 1 << 1;
+
+23 
+VIDCON0
+ = (2 << 6);
+
+26 
+VIDCON1
+ = (1 << 5) | (1 << 6) | (1 << 7) | (1 << 9);
+
+29 
+VIDTCON0
+ = (12 << 16) | (21 << 8) | (9 << 0);
+
+33 
+VIDTCON1
+ = (25 << 16) | (209 << 8) | (19 << 0);
+
+36 
+VIDTCON2
+ = (479 << 11) | (799 << 0);
+
+38 
+	`wö0_öô
+();
+
+41 
+VIDCON0
+ |= 3;
+
+43 
+	}
+}
+
+45 
+	$wö0_öô
+()
+
+47 #ifde‡
+BPP888
+
+
+49 
+WINCON0
+ = (1 << 15) | (0xb << 2) | (1 << 0);
+
+50 
+VIDOSD0C
+ = 800*480;
+
+52 
+WINCON0
+ = (1 << 16) | (0x5 << 2) | (1 << 0);
+
+53 
+VIDOSD0C
+ = 800*480 >> 1;
+
+55 
+WINCHMAP2
+ &= ~(0x7 << 16);
+
+56 
+WINCHMAP2
+ |= (0x1 << 16);
+
+58 
+WINCHMAP2
+ &= ~0x7;
+
+59 
+WINCHMAP2
+ |= 0x1 << 0;
+
+61 
+SHADOWCON
+ &= ~(1 << 5);
+
+62 
+SHADOWCON
+ |= 1;
+
+65 
+VIDOSD0A
+ = 0;
+
+66 
+VIDOSD0B
+ = (799 << 11) | (479 << 0);
+
+69 
+VIDW00ADD0B0
+ = 
+FRAMBUFFER0
+;
+
+71 
+VIDW00ADD1B0
+ = 
+FRAMBUFFER0
+ + 
+VIDOSD0C
+*4;
+
+72 
+	}
+}
+
+76 
+	$gpio_öô
+()
+
+78 
+GPF0CON
+ = 0x22222222;
+
+79 
+GPF1CON
+ = 0x22222222;
+
+80 
+GPF2CON
+ = 0x22222222;
+
+82 
+GPF3CON
+ &= ~0xffff;
+
+83 
+GPF3CON
+ |= 0x2222;
+
+84 
+	}
+}
+
+87 
+	$lcd_˛k§c_£t
+()
+
+89 
+CLK_SRC_LCD0
+ &= ~0xf;
+
+90 
+CLK_SRC_LCD0
+ |= 0x6;
+
+92 
+CLK_DIV_LCD
+ &= ~0xf;
+
+93 
+CLK_DIV_LCD
+ |= 0x7;
+
+94 
+	}
+}
+
+96 
+	$døw_poöt
+(
+x
+, 
+y
+, 
+r
+, 
+g
+, 
+b
+)
+
+98 #ifde‡
+BPP888
+
+
+99 *
+p
+ = (*)
+FRAMBUFFER0
+;
+
+100 *(
+p
+ + 
+y
+ * 800 + 
+x
+Ë(
+r
+ << 16Ë| (
+g
+ << 8Ë| 
+b
+;
+
+102 *
+p
+ = (*)
+FRAMBUFFER0
+;
+
+103 *(
+p
+ + 
+y
+ * 800 + 
+x
+Ë(
+r
+ << 11Ë| (
+g
+ << 5Ë| 
+b
+;
+
+105 
+	}
+}
+
+	@lib.c
+
+1 
+	~<lib.h
+>
+
+3 *
+	$mem˝y
+(*
+de°
+, c⁄° *
+§c
+, 
+u32
+ 
+n
+)
+
+5 *
+d°
+ = 
+de°
+;
+
+6 c⁄° *
+sour
+ = 
+§c
+;
+
+8 
+n
+--) {
+
+9 *
+d°
+++ = *
+sour
+++;
+
+12  
+de°
+;
+
+13 
+	}
+}
+
+15 *
+	$mem£t
+(*
+s
+, 
+c
+, 
+u32
+ 
+n
+)
+
+17 *
+§c
+ = 
+s
+;
+
+19 
+n
+--) {
+
+20 *
+§c
+++ = 
+c
+;
+
+23  
+s
+;
+
+24 
+	}
+}
+
+27 
+	$dñay
+(
+u32
+ 
+n
+)
+
+29 
+i
+,
+j
+;
+
+31 
+i
+ = 0; i < 
+n
+; i++) {
+
+32 
+j
+ = 0; j < 100000; j++) {
+
+36 
+	}
+}
+
+38 
+	$°rcmp
+(c⁄° *
+s1
+, c⁄° *
+s2
+)
+
+40 *
+s1
+) {
+
+41 i‡((*
+s1
+ - *
+s2
+) != 0) {
+
+42  *
+s1
+ - *
+s2
+;
+
+44 
+s1
+++;
+
+45 
+s2
+++;
+
+49 
+	}
+}
+
+	@main.c
+
+1 
+	~<mmu.h
+>
+
+2 
+	~<úq.h
+>
+
+3 
+	~<iic.h
+>
+
+4 
+	~<ç.h
+>
+
+6 
+	$do_unde
+()
+
+9 
+	}
+}
+
+11 
+	$do_svc
+(
+u32
+ 
+imme
+)
+
+14 
+	}
+}
+
+16 
+	$maö
+()
+
+19 
+	`ªbuûd_ve˘‹s_èbÀ
+();
+
+21 
+	`ç_öt_öô
+();
+
+25 
+	}
+}
+
+	@mmu.c
+
+1 
+	~<mmu.h
+>
+
+9 
+	$£˘i⁄_m≠
+(
+u32
+ *
+âb
+, u32 
+va_°¨t
+, u32 
+va_íd
+, u32 
+∑
+)
+
+11 
+va_°¨t
+ < 
+va_íd
+) {
+
+12 
+	`CREATE_DESCRIPTOR
+(
+âb
+, 
+va_°¨t
+, 
+∑
+);
+
+13 
+va_°¨t
+ += 0x100000;
+
+14 
+∑
+ += 0x100000;
+
+16 
+	}
+}
+
+19 
+	$öô_globÆ_m≠
+(
+u32
+ *
+âb
+)
+
+21 
+	`mem£t
+(
+âb
+, 0x0, 4096*4);
+
+23 
+	`£˘i⁄_m≠
+(
+âb
+, 0x0, 0x0cd00000, 0x0);
+
+25 
+	`£˘i⁄_m≠
+(
+âb
+, 0x0ce00000, 0x14000000, 0x0ce00000);
+
+27 
+	`£˘i⁄_m≠
+(
+âb
+, 0x40000000, 0x80000000, 0x40000000);
+
+28 
+	}
+}
+
+30 
+	$íabÀ_mmu
+(
+u32
+ *
+âb
+)
+
+32 
+__asm__
+ 
+	`__vﬁ©ûe__
+(
+
+48 :[
+âb
+]"r"(ttb)
+
+51 
+	}
+}
+
+53 
+	$ªbuûd_ve˘‹s_èbÀ
+()
+
+55 
+	`öô_globÆ_m≠
+(
+TTB
+);
+
+56 
+	`CREATE_DESCRIPTOR
+(
+TTB
+, 0xffff0000, 0x76a00000);
+
+57 
+	`íabÀ_mmu
+(
+TTB
+);
+
+58 
+	`mem˝y
+((*)0xffff0000, (*)
+ex˚p_°¨t
+, 
+ex˚p_íd
+ -Éxcep_start);
+
+60 
+	}
+}
+
+	@raise.c
+
+2 
+	$øi£
+()
+
+5 
+	}
+}
+
+	@rtc.c
+
+1 
+	~<πc.h
+>
+
+2 
+	~<úq.h
+>
+
+3 
+	~<timî.h
+>
+
+5 
+u32
+ 
+	gÆ¨m_˙t
+ = 0;
+
+8 
+u16
+ 
+	$bö2bcd
+(
+u16
+ 
+n
+)
+
+10  ((
+n
+%10) | ((n/10) << 4));
+
+11 
+	}
+}
+
+14 
+u16
+ 
+	$bcd2bö
+(
+u16
+ 
+n
+)
+
+16  (
+n
+&0xf) + ((n>>4)&0xf)*10;
+
+17 
+	}
+}
+
+19 
+	$πc_gëtime
+(
+π˘ime_t
+ *
+t
+)
+
+21 
+t
+->
+yór
+ = 
+	`bcd2bö
+(
+BCDYEAR
+);
+
+22 
+t
+->
+m⁄
+ = 
+	`bcd2bö
+(
+BCDMON
+);
+
+23 
+t
+->
+mday
+ = 
+	`bcd2bö
+(
+BCDDAY
+);
+
+24 
+t
+->
+hour
+ = 
+	`bcd2bö
+(
+BCDHOUR
+);
+
+25 
+t
+->
+mö
+ = 
+	`bcd2bö
+(
+BCDMIN
+);
+
+26 
+t
+->
+£c
+ = 
+	`bcd2bö
+(
+BCDSEC
+);
+
+27 
+t
+->
+wday
+ = 
+	`bcd2bö
+(
+BCDDAYWEEK
+);
+
+28 
+	}
+}
+
+31 
+	$πc_£âime
+(
+π˘ime_t
+ *
+t
+)
+
+33 
+RTCCON
+ |= 0x1;
+
+35 
+BCDYEAR
+ = 
+	`bö2bcd
+(
+t
+->
+yór
+);
+
+36 
+BCDMON
+ = 
+	`bö2bcd
+(
+t
+->
+m⁄
+);
+
+37 
+BCDDAY
+ = 
+	`bö2bcd
+(
+t
+->
+mday
+);
+
+38 
+BCDHOUR
+ = 
+	`bö2bcd
+(
+t
+->
+hour
+);
+
+39 
+BCDMIN
+ = 
+	`bö2bcd
+(
+t
+->
+mö
+);
+
+40 
+BCDSEC
+ = 
+	`bö2bcd
+(
+t
+->
+£c
+);
+
+41 
+BCDDAYWEEK
+ = 
+	`bö2bcd
+(
+t
+->
+wday
+);
+
+43 
+RTCCON
+ &= ~0x1;
+
+44 
+	}
+}
+
+46 
+	$do_tiˇœrm
+()
+
+48 i‡(
+INTP
+&0x2) {
+
+49 
+	`°¨t_pwm0_out
+();
+
+50 
+INTP
+ |= 0x2;
+
+51 } i‡(
+INTP
+&0x1) {
+
+52 
+π˘ime_t
+ 
+t
+;
+
+53 
+	`πc_gëtime
+(&
+t
+);
+
+55 
+	`¥ötf
+("20%02d-%02d-%02d %02d:%02d:%02d weekday: %d\n",
+
+56 
+t
+.
+yór
+,Å.
+m⁄
+,Å.
+mday
+,Å.
+hour
+,Å.
+mö
+,Å.
+£c
+,
+
+57 
+t
+.
+wday
+);
+
+58 
+Æ¨m_˙t
+++;
+
+59 i‡(
+Æ¨m_˙t
+ == 19) {
+
+60 
+	`°›_pwm0_out
+();
+
+61 
+Æ¨m_˙t
+ = 0;
+
+63 
+INTP
+ |= 0x1;
+
+65 
+	}
+}
+
+67 
+	$πc_£t_Æ¨m
+(
+π˘ime_t
+ *
+t
+)
+
+72 
+ALMHOUR
+ = 
+	`bö2bcd
+(
+t
+->
+hour
+);
+
+73 
+ALMMIN
+ = 
+	`bö2bcd
+(
+t
+->
+mö
+);
+
+74 
+ALMSEC
+ = 
+	`bö2bcd
+(
+t
+->
+£c
+);
+
+77 
+RTCALM
+ = (1 << 6) | (0x7 << 0);
+
+79 
+	`úq_ªque°_˝u0
+(
+RTCALM_IRQID
+, 
+do_tiˇœrm
+, 0);
+
+80 
+	}
+}
+
+83 
+	$πc_tic_úq_öô
+()
+
+85 
+	`úq_ªque°_˝u0
+(
+RTCTIC_IRQID
+, 
+do_tiˇœrm
+, 0);
+
+87 
+TICCNT
+ = (32768 >> 1) - 1;
+
+88 
+RTCCON
+ |= 1 << 8;
+
+89 
+RTCCON
+ &= ~(0xf << 4);
+
+90 
+	}
+}
+
+	@timer0.c
+
+1 
+	~<timî.h
+>
+
+4 
+	$do_timî4
+()
+
+6 i‡(
+TINT_CSTAT
+ & (1 << 9)) {
+
+7 
+	`¥ötf
+("do what you want do...\n");
+
+8 
+TINT_CSTAT
+ |= 1 << 9;
+
+10 
+	}
+}
+
+17 
+	$timî0_öô
+(
+u32
+ 
+≥riodus
+, u32 
+dutyus
+)
+
+20 
+TCFG0
+ &= ~0xff;
+
+21 
+TCFG0
+ |= 99;
+
+23 
+TCFG1
+ &= ~0xf;
+
+25 
+TCNTB0
+ = 
+≥riodus
+;
+
+26 
+TCMPB0
+ = 
+dutyus
+;
+
+28 
+TCON
+ = 0;
+
+31 
+TCON
+ |= (1 << 3) | (1 << 1);
+
+32 
+TCON
+ &= ~(1 << 1);
+
+37 
+	}
+}
+
+39 
+	$bìp_£t_hz
+(
+u32
+ 
+‰eq
+)
+
+41 
+	#USPERSEC
+ 1000000UL
+
+	)
+
+42 
+u32
+ 
+tmp
+ = 
+USPERSEC
+/
+‰eq
+;
+
+44 
+GPD0CON
+ &= ~0xf;
+
+45 
+GPD0CON
+ |= 0x1;
+
+47 
+GPD0DAT
+ &= ~0x1;
+
+49 
+	`timî0_öô
+(
+tmp
+,Åmp >> 1);
+
+50 
+	}
+}
+
+52 
+	$°›_pwm0_out
+()
+
+55 
+TCON
+ &= ~(1 << 0);
+
+57 
+GPD0CON
+ &= ~0xf;
+
+58 
+GPD0CON
+ |= 0x1;
+
+60 
+GPD0DAT
+ &= ~0x1;
+
+61 
+	}
+}
+
+63 
+	$°¨t_pwm0_out
+()
+
+66 
+GPD0CON
+ &= ~0xf;
+
+67 
+GPD0CON
+ |= 0x2;
+
+69 
+TCON
+ |= (1 << 0);
+
+70 
+	}
+}
+
+	@timer4.c
+
+1 
+	~<timî4.h
+>
+
+3 
+	$do_timî4
+()
+
+5 i‡(
+TINT_CSTAT
+ & (1 << 9)) {
+
+6 
+	`¥ötf
+("do what you want do...\n");
+
+7 
+TINT_CSTAT
+ |= 1 << 9;
+
+9 
+	}
+}
+
+15 
+	$timî4_öô
+(
+u32
+ 
+ms
+)
+
+18 
+TCFG0
+ &= ~(0xff << 8);
+
+19 
+TCFG0
+ |= 99 << 8;
+
+21 
+TCFG1
+ &= ~(0xf << 16);
+
+23 
+TCNTB4
+ = 1000*
+ms
+;
+
+25 
+TCON
+ = 0;
+
+27 
+TCON
+ |= (1 << 22) | (1 << 21);
+
+30 
+TCON
+ &= ~(1 << 21);
+
+33 
+TCON
+ |= (1 << 20);
+
+36 
+TINT_CSTAT
+ |= 1 << 4;
+
+37 
+	}
+}
+
+	@tp.c
+
+1 
+	~<iic.h
+>
+
+2 
+	~<úq.h
+>
+
+3 
+	~<ç.h
+>
+
+4 
+	~<i§.h
+>
+
+6 
+	$ç_öt_öô
+()
+
+8 
+GPX1CON
+ |= 0xf << 24;
+
+10 
+EXT_INT41CON
+ &= ~(0x7 << 24);
+
+11 
+EXT_INT41CON
+ |= 2 << 24;
+
+13 
+EXT_INT41_FLTCON1
+ |= 0xff<<16;
+
+15 
+EXT_INT41_MASK
+ &= ~(1 << 6);
+
+17 
+	`iic1_öô
+(9527);
+
+19 
+	`úq_ªque°_˝u0
+(
+TP_IRQ
+, 
+do_ç
+, 
+LEV
+);
+
+20 
+	}
+}
+
+	@wdt.c
+
+1 
+	~<wdt.h
+>
+
+3 
+	$do_wdt_timî
+()
+
+5 
+	`¥ötf
+("watch dog coming...\n");
+
+6 
+WTCLRINT
+ = 0;
+
+7 
+	}
+}
+
+9 
+	$wdt_timî_öô
+(
+u32
+ 
+ms
+)
+
+11 
+WTCON
+ = (255 << 8) | (1 << 5) | (3 << 3) | (1 << 2);
+
+12 
+WTDAT
+ = 3*
+ms
+;
+
+13 
+WTCNT
+ = 3*
+ms
+;
+
+14 
+	}
+}
+
+16 
+	$wdt_ª£t_öô
+(
+u32
+ 
+ms
+)
+
+18 
+WTCON
+ = (255 << 8) | (1 << 5) | (3 << 3) | (1 << 0);
+
+19 
+WTDAT
+ = 3*
+ms
+;
+
+20 
+WTCNT
+ = 3*
+ms
+;
+
+22 
+	#AUTOMATIC_WDT_RESET_DISABLE
+ *((vﬁ©ûê
+u32
+ *)0x1002040C)
+
+	)
+
+23 
+	#MASK_WDT_RESET_REQUEST
+ *((vﬁ©ûê
+u32
+ *)0X10020408)
+
+	)
+
+25 
+AUTOMATIC_WDT_RESET_DISABLE
+ = 0;
+
+26 
+MASK_WDT_RESET_REQUEST
+ = 0;
+
+27 
+	}
+}
+
+	@
+1
+.
+0
+31
+336
+adc.c
+i2c.c
+include/adc.h
+include/i2c.h
+include/iic.h
+include/irq.h
+include/isr.h
+include/key.h
+include/keyeint.h
+include/led.h
+include/lib.h
+include/mmu.h
+include/rtc.h
+include/stdarg.h
+include/timer.h
+include/tp.h
+include/uart.h
+include/wdt.h
+irq.c
+isr.c
+key_eint.c
+lcd.c
+lib.c
+main.c
+mmu.c
+raise.c
+rtc.c
+timer0.c
+timer4.c
+tp.c
+wdt.c

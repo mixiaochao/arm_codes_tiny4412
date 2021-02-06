@@ -1,0 +1,44 @@
+TARGET			:= arm
+BIN			:= $(TARGET).bin
+START_OBJ		:= start.o
+OBJS			:= main.o mmu.o
+OBJS			+= vectors.o irq.o
+OBJS			+= isr.o iicc.o
+OBJS			+= tp.o
+OBJS			+= timer4.o
+OBJS			+= do_timer4.o
+DUMP			:= $(TARGET).s
+
+CROSS_COMPILE	:= arm-linux-
+
+CC				:= $(CROSS_COMPILE)gcc
+LD				:= $(CROSS_COMPILE)ld
+AS				:= $(CROSS_COMPILE)as
+OBJCOPY			:= $(CROSS_COMPILE)objcopy
+OBJDUMP			:= $(CROSS_COMPILE)objdump
+NM				:= $(CROSS_COMPILE)nm
+
+CFLAGS			:= -Wall -I./include/ -fno-builtin
+
+###########################################
+
+all:$(TARGET)
+	@$(OBJCOPY) -O binary $< $(BIN)
+	@ls -lh $(BIN)
+
+$(TARGET):$(START_OBJ) $(OBJS)
+	@$(LD) $(START_OBJ) $(OBJS) -o $(TARGET) -Tld.lds
+	@$(OBJDUMP) -d $(TARGET) > $(DUMP)
+	@$(NM) $(TARGET) > System.map	
+
+%.o:%.S
+	@$(AS) -o $@ $<
+
+%.o:%.s
+	@$(AS) -o $@ $<
+
+%.o:%.c
+	@$(CC) $(CFLAGS) -c -o $@ $<
+
+clean:
+	@rm -rf $(TARGET) $(OBJS) $(START_OBJ) $(DUMP) System.map $(BIN)
